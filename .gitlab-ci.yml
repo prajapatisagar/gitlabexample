@@ -1,0 +1,42 @@
+image: tetraweb/php
+
+stages:
+  - test
+  - build
+  - deploy
+
+test:
+  stage: test
+  script: echo "Running tests"
+
+build:
+  stage: build
+  script: echo "Building the app"
+
+deploy_staging:
+  stage: deploy
+  script:
+    - echo "Deploy to staging server"
+  environment:
+    name: staging
+    url: https://staging.example.com
+
+
+deploy_prod:
+  stage: deploy
+  script:
+    - git remote add production https://$GIT_CI_USER:$GIT_CI_PASS@github.com/prajapatisagar/gitlabexample.git
+    #- git config --global user.email "admin@example.com"
+    #- git config --global user.name "Administrator"
+    - git fetch origin
+    #- git push -u production master -f
+    #- git push -u production live -f
+    - git push --mirror https://$GIT_CI_USER:$GIT_CI_PASS@github.com/prajapatisagar/gitlabexample.git
+    - git push --prune https://$GIT_CI_USER:$GIT_CI_PASS@github.com/prajapatisagar/gitlabexample.git +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
+    - echo "Deploy to production server"
+  environment:
+    name: production
+    url: https://example.com
+  when: manual
+  only:
+  - live
