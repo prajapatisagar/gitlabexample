@@ -25,7 +25,7 @@ deploy_staging:
 deploy_prod:
   stage: deploy
   script:
-    - git remote add production https://$GIT_CI_USER:$GIT_CI_PASS@github.com/prajapatisagar/gitlabexample.git
+    - git remote set-url production https://$GIT_CI_USER:$GIT_CI_PASS@github.com/prajapatisagar/gitlabexample.git
     #- git config --global user.email "admin@example.com"
     #- git config --global user.name "Administrator"
     - git fetch origin
