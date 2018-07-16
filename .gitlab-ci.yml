@@ -7,7 +7,6 @@ before_script:
     
     # run ssh-agent
     - eval $(ssh-agent -s)
-    
     #copy key to file
     - echo "$SSH_PRIVATE_KEY" > ./key.file
     - chmod 400 ./key.file
