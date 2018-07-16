@@ -17,7 +17,9 @@ build:
 deploy_staging:
   stage: deploy
   script:
-    ssh root@git.usstats.org "cd /var/www/html/temp &&
+    - echo "$SSH_PRIVATE_KEY" > ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    - ssh root@git.usstats.org "cd /var/www/html/temp &&
         git checkout master &&
         git pull origin master &&
         composer install -n &&
