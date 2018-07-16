@@ -10,10 +10,10 @@ before_script:
     #copy key to file
     - eval "$(ssh-add $SSH_PRIVATE_KEY)"
     
-    - chmod 400 ./key.file
+   # - chmod 400 ./key.file
     
     # add ssh key stored in SSH_PRIVATE_KEY variable to the agent store
-    - ssh-add ./key.file
+   # - ssh-add ./key.file
     
     # disable host key checking (NOTE: makes you susceptible to man-in-the-middle attacks)
     # WARNING: use only in docker container, if you use it with shell you will overwrite your user's ssh config
