@@ -16,14 +16,14 @@ build:
 deploy_staging:
   stage: deploy
   script:
-    - git remote set-url staging ssh://git.usstats.org:/var/www/html/repo/helloworld.git
+    - git remote set-url staging ssh://root:thinker99@git.usstats.org:/var/www/html/repo/helloworld.git
     #- git config --global user.email "admin@example.com"
     #- git config --global user.name "Administrator"
     - git fetch origin
     #- git push -u production master -f
     #- git push -u production live -f
-    - git push --mirror ssh://git.usstats.org:/var/www/html/repo/helloworld.git
-    - git push --prune ssh://git.usstats.org:/var/www/html/repo/helloworld.git +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
+    - git push --mirror ssh://root:thinker99@git.usstats.org:/var/www/html/repo/helloworld.git
+    - git push --prune ssh://root:thinker99@git.usstats.org:/var/www/html/repo/helloworld.git +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
     - echo "Deploy to staging server"
   environment:
     name: staging
