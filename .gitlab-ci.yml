@@ -2,7 +2,7 @@ image: tetraweb/php
 
 
 before_script:
-    - eval $(ssh-agent -s)
+    - eval $(ssh-agent)
     - ssh-add <(echo "$SSH_PRIVATE_KEY")
     - mkdir -p ~/.ssh
     # Disable strict host key checking for Docker builds
