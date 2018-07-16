@@ -22,8 +22,8 @@ deploy_staging:
     - git fetch origin
     #- git push -u production master -f
     #- git push -u production live -f
-    - git push --mirror https://git.usstats.org:/var/www/html/repo/helloworld.git
-    - git push --prune https://git.usstats.org:/var/www/html/repo/helloworld.git +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
+    - git push --mirror http://git.usstats.org:/var/www/html/repo/helloworld.git
+    - git push --prune http://git.usstats.org:/var/www/html/repo/helloworld.git +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
     - echo "Deploy to staging server"
   environment:
     name: staging
