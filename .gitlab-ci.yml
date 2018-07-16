@@ -1,16 +1,6 @@
 image: tetraweb/php
 
 
-before_script:
-    
-    - mkdir -p ~/.ssh
-    # Paste the PRIVATE key into a gitlab variable. Pay attention to the linebreak at the end when pasting
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
-    - chmod 600 ~/.ssh/id_rsa
-    - eval "$(ssh-agent -s)"
-    - ssh-add ~/.ssh/id_rsa
-
-
 stages:
   - test
   - build
@@ -27,15 +17,11 @@ build:
 deploy_staging:
   stage: deploy
   script:
-    - git remote set-url staging ssh://root@git.usstats.org:/var/www/html/repo/helloworld.git
-    #- git config --global user.email "admin@example.com"
-    #- git config --global user.name "Administrator"
-    - git fetch origin
-    #- git push -u production master -f
-    #- git push -u production live -f
-    - git push --mirror ssh://root@git.usstats.org:/var/www/html/repo/helloworld.git
-    - git push --prune ssh://root@git.usstats.org:/var/www/html/repo/helloworld.git +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
-    - echo "Deploy to staging server"
+    ssh root@git.usstats.org "cd /var/www/html/temp &&
+        git checkout master &&
+        git pull origin master &&
+        composer install -n &&
+        bin/console doctrine:migrations:migrate --no-interaction "
   environment:
     name: staging
     url: https://staging.example.com
