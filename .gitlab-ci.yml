@@ -17,14 +17,14 @@ build:
 deploy_staging:
   stage: deploy
   script:
-    - mkdir -p ~/.ssh/known_hosts
-    - echo "$SSH_PRIVATE_KEY" > ~/.ssh/known_hosts
-    - chmod 644 ~/.ssh/known_hosts
-    - ssh root@git.usstats.org "cd /var/www/html/temp &&
-        git checkout master &&
-        git pull origin master &&
-        composer install -n &&
-        bin/console doctrine:migrations:migrate --no-interaction "
+    #- mkdir -p ~/.ssh/known_hosts
+    #- echo "$SSH_PRIVATE_KEY" > ~/.ssh/known_hosts
+    #- chmod 644 ~/.ssh/known_hosts
+    #- ssh root@git.usstats.org "cd /var/www/html/temp &&
+    #    git checkout master &&
+    #    git pull origin master &&
+    #     composer install -n &&
+    #     bin/console doctrine:migrations:migrate --no-interaction "
   environment:
     name: staging
     url: https://staging.example.com
