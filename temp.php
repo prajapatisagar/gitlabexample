@@ -1,1 +1,1 @@
-temp
+temp edit karvama avase
