@@ -1,6 +1,5 @@
 image: tetraweb/php
 
-
 stages:
   - test
   - build
