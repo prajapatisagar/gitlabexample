@@ -16,6 +16,15 @@ build:
 
 deploy_staging:
   stage: deploy
+  before_script:
+        # setup ssh
+        - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+        - eval $(ssh-agent -s)
+        - mkdir -p ~/.ssh
+        - echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+        - chmod 0600 ~/.ssh/id_rsa
+        - '[[ -f /.dockerenv ]] && echo -e "Host *ntStrictHostKeyChecking nonn" > ~/.ssh/config'
+        - ssh-keyscan $DEV_HOST >> ~/.ssh/known_hosts
   script:
      - echo "Deploy to staging server"
     #- mkdir -p ~/.ssh/known_hosts
