@@ -25,7 +25,7 @@ deploy_staging:
         - '[[ -f /.dockerenv ]] && echo -e "Host *ntStrictHostKeyChecking nonn" > ~/.ssh/config'
         - ssh-keyscan $DEV_HOST >> ~/.ssh/known_hosts
   script:
-    - ssh root@$DEV_HOST "cd /var/www/html/new/firstproject && git checkout . && git pull origin development  && composer install  && chown -R www-data:www-data /var/www/html/new/firstproject"
+    - ssh root@$DEV_HOST "cd /var/www/html/new/firstproject && git checkout . && git pull origin live  && composer install  && chown -R www-data:www-data /var/www/html/new/firstproject"
     - echo "Deploy to staging server"
     #- mkdir -p ~/.ssh/known_hosts
     #- echo "$SSH_PRIVATE_KEY" > ~/.ssh/known_hosts
