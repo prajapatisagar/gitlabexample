@@ -1,10 +1,9 @@
 image: tetraweb/php
 
 before_script:  
-  - apt-get update && apt-get install -y git
-  #- php bin/composer.phar install --dev --prefer-dist
-  - composer self-update
-  - composer install --prefer-dist --no-interaction
+  #- apt-get update && apt-get install -y git
+  #- composer self-update
+  #- composer install --prefer-dist --no-interaction
 
 stages:
   - test
@@ -14,7 +13,7 @@ stages:
 test:
   stage: test
   script: 
-  - ./vendor/bin/phpcs --error-severity=1 --warning-severity=8 --extensions=php demo.php
+  #- ./vendor/bin/phpcs --error-severity=1 --warning-severity=8 --extensions=php demo.php
   - echo "Running tests"
 
 build:
