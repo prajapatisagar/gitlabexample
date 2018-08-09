@@ -1,5 +1,10 @@
 image: tetraweb/php
 
+before_script:  
+  - apt-get update && apt-get install -y git
+  - php bin/composer.phar install --dev --prefer-dist
+
+
 stages:
   - test
   - build
@@ -7,7 +12,9 @@ stages:
 
 test:
   stage: test
-  script: echo "Running tests"
+  script: 
+  - ./vendor/bin/phpcs --error-severity=1 --warning-severity=8 --extensions=php
+  - echo "Running tests"
 
 build:
   stage: build
