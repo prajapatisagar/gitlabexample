@@ -2,7 +2,10 @@ image: tetraweb/php
 
 before_script:  
   - apt-get update && apt-get install -y git
-  - php bin/composer.phar install --dev --prefer-dist
+  #- php bin/composer.phar install --dev --prefer-dist
+  - composer self-update
+  - composer install --prefer-dist --no-interaction
+
 
 
 stages:
