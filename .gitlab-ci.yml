@@ -16,7 +16,7 @@ stages:
 test:
   stage: test
   script: 
-  - ./vendor/bin/phpcs --error-severity=1 --warning-severity=8 --extensions=php
+  - ./vendor/bin/phpcs --error-severity=1 --warning-severity=8 --extensions=php /
   - echo "Running tests"
 
 build:
