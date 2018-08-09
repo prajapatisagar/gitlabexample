@@ -6,8 +6,6 @@ before_script:
   - composer self-update
   - composer install --prefer-dist --no-interaction
 
-
-
 stages:
   - test
   - build
@@ -37,14 +35,6 @@ deploy_staging:
   script:
     - ssh root@$DEV_HOST "cd /var/www/html/new/firstproject && git checkout . && git pull origin live  && chown -R www-data:www-data /var/www/html/new/firstproject"
     - echo "Deploy to staging server"
-    #- mkdir -p ~/.ssh/known_hosts
-    #- echo "$SSH_PRIVATE_KEY" > ~/.ssh/known_hosts
-    #- chmod 644 ~/.ssh/known_hosts
-    #- ssh root@git.usstats.org "cd /var/www/html/temp &&
-    #    git checkout master &&
-    #    git pull origin master &&
-    #     composer install -n &&
-    #     bin/console doctrine:migrations:migrate --no-interaction "
   environment:
     name: staging
     url: https://staging.example.com
@@ -54,11 +44,7 @@ deploy_prod:
   stage: deploy
   script:
     - git remote set-url production https://$GIT_CI_USER:$GIT_CI_PASS@github.com/prajapatisagar/gitlabexample.git
-    #- git config --global user.email "admin@example.com"
-    #- git config --global user.name "Administrator"
     - git fetch origin
-    #- git push -u production master -f
-    #- git push -u production live -f
     - git push --mirror https://$GIT_CI_USER:$GIT_CI_PASS@github.com/prajapatisagar/gitlabexample.git
     - git push --prune https://$GIT_CI_USER:$GIT_CI_PASS@github.com/prajapatisagar/gitlabexample.git +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/*
     - echo "Deploy to production server"
