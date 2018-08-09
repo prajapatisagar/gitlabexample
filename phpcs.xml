@@ -3,6 +3,6 @@
 <description>The ASH2 coding standard.</description>  
     <rule ref="PSR2"/>
     
-    <rule ref="WordPress-Core"/>
+    <rule ref="php"/>
     <exclude-pattern>vendor</exclude-pattern>
 </ruleset>
